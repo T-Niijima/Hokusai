@@ -86,13 +86,13 @@ public enum HOKColorScheme {
     }
 }
 
-final public class HOKColors: NSObject {
+@objc final public class HOKColors: NSObject {
     var backgroundColor: UIColor
     var buttonColor: UIColor
     var cancelButtonColor: UIColor
     var fontColor: UIColor
     
-    required public init(backGroundColor: UIColor, buttonColor: UIColor, cancelButtonColor: UIColor, fontColor: UIColor) {
+    @objc required public init(backGroundColor: UIColor, buttonColor: UIColor, cancelButtonColor: UIColor, fontColor: UIColor) {
         self.backgroundColor   = backGroundColor
         self.buttonColor       = buttonColor
         self.cancelButtonColor = cancelButtonColor
@@ -111,7 +111,7 @@ final public class HOKButton: UIButton {
     let kDefaultFont      = "AvenirNext-DemiBold"
     let kFontSize:CGFloat = 16.0
     
-    func setColor(_ colors: HOKColors) {
+    @objc func setColor(_ colors: HOKColors) {
         self.setTitleColor(colors.fontColor, for: UIControlState())
         self.backgroundColor = (isCancelButton) ? colors.cancelButtonColor : colors.buttonColor
     }
@@ -254,8 +254,8 @@ final public class Hokusai: UIViewController, UIGestureRecognizerDelegate {
     public var colorScheme        = HOKColorScheme.hokusai
     public var fontName           = ""
     public var lightFontName      = ""
-    public var colors:HOKColors!  = nil
-    public var cancelButtonTitle  = "Cancel"
+    @objc public var colors:HOKColors!  = nil
+    @objc public var cancelButtonTitle  = "Cancel"
     public var cancelButtonAction : (()->Void)?
     public var headline: String   = ""
     public var message:String     = ""
@@ -345,7 +345,7 @@ final public class Hokusai: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // Add a button with a closure
-    public func addButton(_ title:String, action:@escaping ()->Void) -> HOKButton {
+    @objc public func addButton(_ title:String, action:@escaping ()->Void) -> HOKButton {
         
         let btn        = addButton(title)
         btn.action     = action
@@ -368,7 +368,7 @@ final public class Hokusai: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // Add a cancel button
-    public func addCancelButton(_ title:String) -> HOKButton {
+    @objc public func addCancelButton(_ title:String) -> HOKButton {
         
         if let cancelButtonAction = cancelButtonAction {
         
@@ -420,7 +420,7 @@ final public class Hokusai: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // Show the menu
-    public func show() {
+    @objc public func show() {
         
         if let rv = UIApplication.shared.keyWindow {
         
